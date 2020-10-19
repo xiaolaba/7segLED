@@ -42,3 +42,5 @@ the code lites first digits, and then the other,
      segmentDriver=~lookupTable[Units] + showUnits;  // for common anode
 ```
 
+### tesing, video clip
+https://youtu.be/GjLje3UNrg0 
