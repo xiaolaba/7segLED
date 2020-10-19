@@ -40,59 +40,48 @@ __zero_reg__ = 1
 .global	main
 	.type	main, @function
 main:
-	push r13	 ; 
-	push r14	 ; 
-	push r15	 ; 
 	push r16	 ; 
 	push r17	 ; 
 	push r29	 ; 
 	push r28	 ; 
 	in r28,__SP_L__	 ; 
 	in r29,__SP_H__	 ; 
-	sbiw r28,20	 ; ,
+	sbiw r28,16	 ; ,
 	in __tmp_reg__,__SREG__
 	cli
 	out __SP_H__,r29	 ; 
 	out __SREG__,__tmp_reg__
 	out __SP_L__,r28	 ; 
 /* prologue: function */
-/* frame size = 20 */
-	ldi r24,lo8(-1)	 ;  tmp83,
-	out 36-32,r24	 ; ,, tmp83
-	out 42-32,r24	 ; ,, tmp83
-	movw r26,r28	 ;  tmp86,
-	adiw r26,1	 ;  tmp86,
-	ldi r30,lo8(C.0.1259)	 ;  tmp87,
-	ldi r31,hi8(C.0.1259)	 ;  tmp87,
-	ldi r24,lo8(20)	 ;  tmp88,
+/* frame size = 16 */
+	movw r26,r28	 ;  tmp83,
+	adiw r26,1	 ;  tmp83,
+	ldi r30,lo8(C.0.1257)	 ;  tmp84,
+	ldi r31,hi8(C.0.1257)	 ;  tmp84,
+	ldi r24,lo8(16)	 ;  tmp85,
 .L2:
 	ld r0,Z+	 ; ,
 	st X+,r0	 ; ,
-	subi r24,lo8(-(-1))	 ;  tmp88,
+	subi r24,lo8(-(-1))	 ;  tmp85,
 	brne .L2	 ; ,
-	ldi r18,lo8(0)	 ;  k,
-	ldi r19,hi8(0)	 ;  k,
-	movw r16,r28	 ;  tmp110,
-	subi r16,lo8(-(1))	 ;  tmp110,
-	sbci r17,hi8(-(1))	 ;  tmp110,
-	ldi r20,lo8(200)	 ;  tmp114,
-	ldi r21,hi8(200)	 ;  tmp114,
-	ldi r22,lo8(-2)	 ; ,
-	mov r13,r22	 ;  tmp116,
-	ldi r25,lo8(21)	 ; ,
-	mov r14,r25	 ;  tmp118,
-	mov r15,__zero_reg__	 ;  tmp118
-	add r14,r28	 ;  tmp118,
-	adc r15,r29	 ;  tmp118,
-	ldi r23,lo8(-3)	 ;  tmp119,
+	ldi r24,lo8(-1)	 ;  tmp87,
+	out 42-32,r24	 ; ,, tmp87
+	ldi r19,lo8(0)	 ;  Tens,
+	movw r22,r28	 ;  tmp106,
+	subi r22,lo8(-(1))	 ;  tmp106,
+	sbci r23,hi8(-(1))	 ;  tmp106,
+	ldi r20,lo8(400)	 ;  tmp109,
+	ldi r21,hi8(400)	 ;  tmp109,
+	movw r16,r28	 ;  tmp112,
+	subi r16,lo8(-(17))	 ;  tmp112,
+	sbci r17,hi8(-(17))	 ;  tmp112,
 	rjmp .L14	 ; 
 .L6:
-	out 43-32,r23	 ; ,, tmp119
-	out 37-32,r22	 ; ,, D.1264
-	ldi r24,lo8(1000)	 ;  __ticks,
-	ldi r25,hi8(1000)	 ;  __ticks,
+	out 43-32,r18	 ; ,, D.1263
+	ldi r24,lo8(2000)	 ;  __ticks,
+	ldi r25,hi8(2000)	 ;  __ticks,
 .L4:
-	movw r26,r20	 ;  __count, tmp114
+	movw r26,r20	 ;  __count, tmp109
 /* #APP */
  ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
 	1: sbiw r26,1	 ;  __count
@@ -101,13 +90,13 @@ main:
 /* #NOAPP */
 	sbiw r24,1	 ;  __ticks,
 	brne .L4	 ; ,
-	out 43-32,r13	 ; ,, tmp116
-	ld r24,Z	 ;  D.1267, a
-	out 37-32,r24	 ; ,, D.1267
-	ldi r24,lo8(10000)	 ;  __ticks,
-	ldi r25,hi8(10000)	 ;  __ticks,
+	ld r24,Z	 ;  tmp90, lookupTable
+	com r24	 ;  tmp90
+	out 43-32,r24	 ; ,, tmp90
+	ldi r24,lo8(4000)	 ;  __ticks,
+	ldi r25,hi8(4000)	 ;  __ticks,
 .L5:
-	movw r26,r20	 ;  __count, tmp114
+	movw r26,r20	 ;  __count, tmp109
 /* #APP */
  ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
 	1: sbiw r26,1	 ;  __count
@@ -116,39 +105,42 @@ main:
 /* #NOAPP */
 	sbiw r24,1	 ;  __ticks,
 	brne .L5	 ; ,
-	adiw r30,2	 ;  ivtmp.25,
-	cp r30,r14	 ;  ivtmp.25, tmp118
-	cpc r31,r15	 ;  ivtmp.25, tmp118
+	adiw r30,1	 ;  ivtmp.24,
+	cp r30,r16	 ;  ivtmp.24, tmp112
+	cpc r31,r17	 ;  ivtmp.24, tmp112
 	brne .L6	 ; ,
-	subi r18,lo8(-(1))	 ;  k,
-	sbci r19,hi8(-(1))	 ;  k,
-	cpi r18,10	 ;  k,
-	cpc r19,__zero_reg__	 ;  k
-	brlt .L14	 ; ,
-	ldi r18,lo8(0)	 ;  k,
-	ldi r19,hi8(0)	 ;  k,
+	subi r19,lo8(-(1))	 ;  Tens,
+	cpi r19,lo8(16)	 ;  Tens,
+	brlo .L14	 ; ,
+	ldi r19,lo8(0)	 ;  Tens,
 .L14:
-	movw r30,r18	 ;  tmp98, k
-	lsl r30	 ;  tmp98
-	rol r31	 ;  tmp98
-	add r30,r16	 ;  tmp98, tmp110
-	adc r31,r17	 ;  tmp98, tmp110
-	ld r22,Z	 ;  D.1264, a
-	movw r30,r16	 ;  ivtmp.25, tmp110
+	movw r30,r22	 ;  tmp95, tmp106
+	add r30,r19	 ;  tmp95, Tens
+	adc r31,__zero_reg__	 ;  tmp95
+	ld r18,Z	 ;  D.1263, lookupTable
+	com r18	 ;  D.1263
+	subi r18,lo8(-(-128))	 ;  D.1263,
+	movw r30,r22	 ;  ivtmp.24, tmp106
 	rjmp .L6	 ; 
 	.size	main, .-main
 	.data
-	.type	C.0.1259, @object
-	.size	C.0.1259, 20
-C.0.1259:
-	.word	63
-	.word	6
-	.word	91
-	.word	79
-	.word	102
-	.word	109
-	.word	124
-	.word	7
-	.word	127
-	.word	103
+	.type	C.0.1257, @object
+	.size	C.0.1257, 16
+C.0.1257:
+	.byte	63
+	.byte	6
+	.byte	91
+	.byte	79
+	.byte	102
+	.byte	109
+	.byte	125
+	.byte	39
+	.byte	127
+	.byte	111
+	.byte	119
+	.byte	124
+	.byte	57
+	.byte	94
+	.byte	121
+	.byte	113
 .global __do_copy_data

@@ -69,9 +69,9 @@ del %main%.out
 ::pause
 :::: burn hex
 
-avrdude -c usbtiny -p t13 -U flash:w:"%main%_%mcu%.hex":a -U lfuse:w:%lfuse%:m  -U hfuse:w:%hfuse%:m
+::avrdude -c usbtiny -p m328p -U flash:w:"%main%_%mcu%.hex":a -U lfuse:w:%lfuse%:m  -U hfuse:w:%hfuse%:m
 
-::avrdude -c usbtiny -p %mcu% -U flash:w:"main.hex":a
+avrdude -c usbtiny -p %mcu% -U flash:w:%main%_%mcu%.hex:a
 
 :::: avrdude terminal only
 ::avrdude -c usbtiny -p %mcu% -t
